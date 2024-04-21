@@ -51,11 +51,14 @@ export const TodoListWeek = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 10px;
+  padding: 3px;
   width: 90%;
   margin-bottom: 10px;
-  background-color: lightgray;
-  border-radius: 20px;
+  background-color: #5c8be9;
+  border-radius: 5px;
   font-size: 16px;
+  color: white;
+  font-weight: bold;
 `;
 
 export const TodoListSat = styled.div`
@@ -70,7 +73,7 @@ export const TodoListSun = styled.div`
   flex-grow: 1;
   justify-content: center;
   align-items: center;
-  color: red;
+  color: blue;
 `;
 
 export const TodoListMon = styled.div`

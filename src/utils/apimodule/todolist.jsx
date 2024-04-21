@@ -37,7 +37,7 @@ const readTodoListApi = async (todoemail) => {
       todoEmail: todoemail,
     });
     if (response.data.success) {
-      return { success: true, data: response.data.data[0] };
+      return { success: true, data: response.data.data };
     } else {
       return { success: false };
     }

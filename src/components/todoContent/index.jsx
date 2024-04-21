@@ -50,10 +50,10 @@ const TodoContentBox = () => {
     setIsModalOpen(true);
     try {
       const result = await readTodoListApi(todoemail);
-
-      if (true) {
-        console.log(result);
-        const selectedTodo = result.data.todoDate === date ? result.data : null;
+      console.log(result);
+      console.log(result.data);
+      if (result.success && Array.isArray(result.data)) {
+        const selectedTodo = result.data.find((todo) => todo.todoDate == date);
         if (selectedTodo) {
           setTitle(selectedTodo.todoTitle);
           setContent(selectedTodo.todoContent);
@@ -69,8 +69,7 @@ const TodoContentBox = () => {
         setCategories([]);
       }
     } catch (error) {
-      console.error("Error fetching todo list:", error);
-      // 에러 처리
+      console.error("fetch error:", error);
     }
   };
 
@@ -80,6 +79,7 @@ const TodoContentBox = () => {
     setContent("");
     setSharedState("");
     setCategories([]);
+    setSelectedId(null);
   };
 
   const createTodoList = async () => {
