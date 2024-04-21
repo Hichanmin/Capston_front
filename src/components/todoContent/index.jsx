@@ -173,12 +173,13 @@ const TodoContentBox = () => {
         if (result.data.success) {
           setIsModalOpen(false);
         } else {
-          alert("글 작성 실패");
+          alert("글 삭제 실패");
         }
       }
     } catch (error) {
       console.log(`${error}`);
     }
+    setIsModalOpen(false);
   };
 
   const renderDates = () => {

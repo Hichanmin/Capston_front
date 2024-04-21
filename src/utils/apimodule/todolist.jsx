@@ -85,9 +85,10 @@ const createTodoListApi = async (
  */
 const deleteTodoListApi = async (todoemail, selectedId) => {
   try {
-    const response = await api.delete(`/todo/delete/${selectedId}`, {
+    const response = await api.post(`/todo/delete/${selectedId}`, {
       todoEmail: todoemail,
     });
+
     if (response.data.success) {
       return { success: true };
     } else {
