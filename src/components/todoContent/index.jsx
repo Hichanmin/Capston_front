@@ -44,33 +44,48 @@ const TodoContentBox = () => {
   const todoemail = useRecoilValue(useremailState);
   const [sharedState, setSharedState] = useState(false);
   const [categories, setCategories] = useState([]);
+  const [existingData, setExistingData] = useState(null);
 
-  const handleDateClick = async (date) => {
-    setSelectedId(date);
-    setIsModalOpen(true);
-    try {
-      const result = await readTodoListApi(todoemail);
-      console.log(result);
-      console.log(result.data);
-      if (result.success && Array.isArray(result.data)) {
-        const selectedTodo = result.data.find((todo) => todo.todoDate == date);
-        if (selectedTodo) {
-          setTitle(selectedTodo.todoTitle);
-          setContent(selectedTodo.todoContent);
-          setCategories(selectedTodo.todoCategory);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await readTodoListApi(todoemail);
+        if (result.success && Array.isArray(result.data)) {
+          const selectedTodo = result.data.find(
+            (todo) => todo.todoDate == selectedId
+          );
+          if (selectedTodo) {
+            setTitle(selectedTodo.todoTitle);
+            setContent(selectedTodo.todoContent);
+            setCategories(selectedTodo.todoCategory);
+            setExistingData(true);
+          } else {
+            setTitle("");
+            setContent("");
+            setCategories([]);
+            setExistingData(false);
+            // setSelectedId(null);
+            setSharedState(false);
+          }
         } else {
           setTitle("");
           setContent("");
           setCategories([]);
+          setExistingData(false);
         }
-      } else {
-        setTitle("");
-        setContent("");
-        setCategories([]);
+      } catch (error) {
+        console.error("fetch error:", error);
       }
-    } catch (error) {
-      console.error("fetch error:", error);
+    };
+
+    if (selectedId) {
+      fetchData();
     }
+  }, [selectedId, todoemail]);
+
+  const handleDateClick = async (date) => {
+    setSelectedId(date);
+    setIsModalOpen(true);
   };
 
   const closeModal = () => {
@@ -252,7 +267,9 @@ const TodoContentBox = () => {
                     공유하기
                   </label>
                   <ModalButton>
-                    <button onClick={createTodoList}>추가</button>
+                    {!existingData && (
+                      <button onClick={createTodoList}>추가</button>
+                    )}
                     <button onClick={updateTodoList}>수정</button>
                     <button onClick={deleteTodoList}>삭제</button>
                   </ModalButton>

@@ -54,7 +54,7 @@ export const TodoListWeek = styled.div`
   padding: 3px;
   width: 90%;
   margin-bottom: 10px;
-  background-color: #5c8be9;
+  background-color: #5c8be1;
   border-radius: 5px;
   font-size: 16px;
   color: white;

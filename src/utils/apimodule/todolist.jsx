@@ -60,7 +60,7 @@ const createTodoListApi = async (
       todoTitle: title,
       todoContent: content,
       todoEmail: todoemail,
-      todoCheck: 1, // **반드시 추후 수정
+      todoCheck: sharedState,
       todoDate: selectedId,
       todoCategory: categories,
     });
@@ -117,7 +117,7 @@ const updateTodoListApi = async (
   try {
     const response = await api.post(`/todo/update/${selectedId}`, {
       todoTitle: title,
-      totoContent: content,
+      todoContent: content,
       todoEmail: todoemail,
       todoCategory: categories,
     });
