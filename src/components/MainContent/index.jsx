@@ -16,7 +16,7 @@ const MainContentBox = () => {
         <BottomSection>
           {" "}
           <div onClick={() => navigate("/todopage")}>
-            📌todoList순위와 실시간 업데이트 확인하기
+            📌&nbsp;todoList순위와 실시간 업데이트 확인하기
           </div>
         </BottomSection>
       </MainContentContainer>

@@ -21,17 +21,23 @@ export const TopSection = styled.div`
   }
 `;
 export const BottomSection = styled.div`
-  font-weight: light;
   flex-direction: column;
 flex-grow:1 ;
-  color: black;
   font-weight: bold;
   width: 95%;
   height:100%;
-  border-radius: 20px;
   align-items: flex-end;
   display: flex;
   justify-content: flex-end;
+  & > div {
+    background-color: rgb(165, 159, 255);
+    font-weight:bold;
+    color:white;
+    padding-left:6px;
+    padding-right:8px;
+    padding:4px;
+    border-radius:10px;
+  }
   }
 `;
 
